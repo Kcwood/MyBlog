@@ -35,18 +35,22 @@
                 @post.Likes likes
             </div>
             <div class="commentContainer">
+                @if(post.Comments.Any())
+                { 
                 @*loop over and display each comment*@
-                @foreach (var comment in post.Comments)
-	            {
-		            <div class="comment">
-                        <span class="commentTitle">
-                            By: @comment.Name on @comment.DateCreated.ToLongDateString();
-                        </span>
+                foreach (var comment in post.Comments)
+	                {
                         <div>
-                            @comment.Body
+                        @Html.Partial("comment", comment)
                         </div>
-		            </div>
-	            }
+	                }
+                } else {
+                    <div>No comments.</div>
+                }
+                <div class="addComment">
+                    @*pass in a blank comment object, with the post ID set.*@
+                    @Html.Partial("addComment", new MyBlog.Models.Comment() { PostID = post.PostID })
+                </div>
             </div>
         </div>
     }

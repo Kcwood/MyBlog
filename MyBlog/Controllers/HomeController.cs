@@ -35,5 +35,18 @@ namespace MyBlog.Controllers
             return Content(post.Likes + " likes");
         }
 
+
+        //AJAX POST: /Home/addComment
+        public ActionResult addComment(Models.Comment c)
+        {
+            //set the Date Created property of the comment 
+            c.DateCreated = DateTime.Now;
+            //add it to the database
+            db.Comments.Add(c);
+            //save the changes
+            db.SaveChanges();
+            //return the comment view
+            return PartialView("comment", c);
+        }
     }
 }

@@ -16,4 +16,16 @@ $(document).ready(function () {
             $(likesDiv).html(data);
         });
     });
+
+    //adding a comment, bind a submit event to the addComment form 
+    $('.addComment form').on('submit', function (event) {
+        //stop the form from submitting normallly
+        event.preventDefault();
+        //put this (the form) into a variable
+        var theForm = $(this);
+        //do the AJAX POST, ust the serialize command to make a string of data
+        $.post('/home/addComment', $(this).serialize(), function (data) {
+            theForm.parent().prepend(data);
+        });
+    });
 });
