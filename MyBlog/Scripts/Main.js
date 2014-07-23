@@ -26,6 +26,9 @@ $(document).ready(function () {
         //do the AJAX POST, ust the serialize command to make a string of data
         $.post('/home/addComment', $(this).serialize(), function (data) {
             theForm.parent().prepend(data);
+            //Clear the input fields
+            theForm.find('#Name').val("");
+            theForm.find('#Body').val("");
         });
     });
 });

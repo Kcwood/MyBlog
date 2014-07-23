@@ -18,8 +18,10 @@
         {
            <div>
                Welcome @User.Identity.Name! @*welcome <username>*@
-               <a href="@Url.Action("Logout","Account")">Logout</a>
+               <a href="@Url.Action("Index", "Home")">Home</a>
                <a href="@Url.Action("Create", "Post")">Create a new post</a>
+               <a href="@Url.Action("Index","Comments")">Edit</a>
+               <a href="@Url.Action("Logout","Account")">Logout</a>
            </div> 
         }
         else
